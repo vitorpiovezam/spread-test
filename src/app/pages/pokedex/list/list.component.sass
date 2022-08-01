@@ -1,0 +1,31 @@
+input
+	padding: 10px 15px
+	width: -webkit-fill-available
+	font-size: 22px
+	margin-bottom: 40px
+
+main
+	min-height: 1280px
+	height: 100%
+	max-width: 100%
+
+	--gap: 12px
+	display: inline-flex
+	flex-wrap: wrap
+	margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap))
+	width: calc(100% + var(--gap))
+	justify-content: center
+	text-align: -webkit-center
+
+	app-pokemon-card 
+		margin: var(--gap) 0 20px var(--gap)
+		&:hover
+			cursor: pointer
+
+.input-wrapper 
+	height: 80px
+
+mat-spinner 
+	position: relative
+	left: 95%
+	top: -85px
