@@ -14,13 +14,14 @@ npm run start;
 ## Running tests
 
 **Unit testing**
+Unit test is broken, I could not resovle at the time :/
 
 ```
-ng serve
+ng test
 ```
 
 **End to End testing**
 
 ```
-cypress run
+npm run test:e2e
 ```

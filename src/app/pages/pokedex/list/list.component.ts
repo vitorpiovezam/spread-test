@@ -19,10 +19,10 @@ import { PokedexViewDialogComponent } from '../view-dialog/view-dialog.component
     </header>
   
     <main  
-      infiniteScroll
-      [infiniteScrollDistance]="10"
-      [infiniteScrollUpDistance]="10"
-      [infiniteScrollThrottle]="20"
+      infinite-scroll  
+      [infiniteScrollDistance]="scrollDistance"
+      [infiniteScrollUpDistance]="scrollUpDistance"
+      [infiniteScrollThrottle]="throttle"
       (scrolled)="onScroll()">
 
       <ng-container *ngIf="pokemons.length === 0">
@@ -46,6 +46,10 @@ export class PokedexListComponent implements OnInit, OnDestroy {
   loading = false;
   page = 1;
   limit = 15;
+
+  throttle = 300;
+  scrollDistance = 1;
+  scrollUpDistance = 2;
 
   form: FormGroup = new FormGroup({
     name: new FormControl('')
@@ -78,8 +82,8 @@ export class PokedexListComponent implements OnInit, OnDestroy {
   }
 
   onScroll() {
-    alert('ae porra')
     this.limit += this.limit;
+    this.getPokemons();
   }
 
   openDetails(pokemon: Pokemon) {
