@@ -10,7 +10,10 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require( 'karma-phantomjs-launcher' ),
+      require( 'karma-remap-istanbul' ),
+      require( 'angular-cli/plugins/karma' )
     ],
     client: {
       jasmine: {
