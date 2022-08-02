@@ -16,16 +16,30 @@ import { PokemonService } from "src/app/shared/services/pokemon.service";
 
     <main>
 			<ng-container *ngIf="pokemon; else loadingTemplate">
+				<h1> #{{ pokemon?.nationalPokedexNumbers[0] }} {{ pokemon?.name }} Information</h1>
+
+				<h2> Basic Info </h2>
 				<form [formGroup]="form">
 					<app-pokemon-form formControlName="pokemon"></app-pokemon-form>
 				</form>
+
+				<div class="attacks" *ngIf="pokemon.attacks">
+					<div>
+						<h2>Attacks</h2>
+							<ng-container *ngFor="let attack of pokemon.attacks; let i = index">
+								<h3> {{ i }} - {{ attack.name }}</h3>
+								<p>Cost: {{ attack.cost.join(',') }}</p>
+								<p>Damage: {{ attack.damage === "" ? 'Not defined' : attack.damage }}</p>
+							</ng-container>
+						</div>
+
+						<div>
+							<img width="230px" class="card" *ngIf="pokemon?.images?.large" lazy [src]="pokemon?.images?.large">
+						</div>
+					</div>
+				
 			</ng-container>
     </main>
-
-    <footer>
-      
-    </footer>
-
 
 		<ng-template #loadingTemplate>
 			<mat-spinner diameter="50"></mat-spinner>
@@ -44,7 +58,6 @@ export class PokedexViewComponent implements OnInit {
     private activatedRoute: ActivatedRoute
 	) {
 		this.pokemonId = this.activatedRoute.snapshot.params['id'];
-		
 	}
 
 	ngOnInit(): void {
@@ -56,7 +69,9 @@ export class PokedexViewComponent implements OnInit {
 			this.pokemon = res.data[0];
 			this.form = new FormGroup({
 				pokemon: new FormControl(	this.pokemon )
-			})
+			});
+
+			console.log(this.pokemon)
 			
 			this.initForm();
 		});

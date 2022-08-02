@@ -13,11 +13,11 @@ describe('Pokedex', () => {
 
   it('Should search for pokemons', () => {
     cy.get('input#name').type('bulba');
-    cy.get('app-pokemon-card').should('be.visible')
+    cy.get('app-pokemon-card').should('be.visible');
   })
 
   it('Should see pokemons details', () => {
-    cy.get('input#name').type('Charizard');
-    cy.get('app-pokemon-card').eq(0).click();
+    cy.visit('http://localhost:4200/pokedex/view/pl3-1')
+    cy.get('.attacks').should('be.visible');
   })
 })

@@ -19,7 +19,9 @@ import { Pokemon } from "src/app/shared/definitions/pokemon.model";
           <app-pokemon-form formControlName="pokemon"></app-pokemon-form>
         </form>
 
-        <p><a (click)="close()" [routerLink]="['/view', pokemon.id]">Click to see more details</a></p>
+        <a (click)="close()" id="details" [routerLink]="['/view', pokemon.id]">
+          <button mat-button>Click to attacks and other details</button>
+        </a>
       </div>
     </main>
 

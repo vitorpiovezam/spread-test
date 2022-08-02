@@ -15,6 +15,7 @@ export class Pokemon extends BaseModel {
   flavorText?: string[] = null;
   rules?: string[] = null;
   rarity?: string[] = null;
+  attacks?: any[] = null;
 
   constructor() {
     super()
