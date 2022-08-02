@@ -13,15 +13,14 @@ npm run start;
 
 ## Running tests
 
-**Unit testing**
-Unit test is broken, I could not resovle at the time :/
+This project have only End to End testing, with cypress.
 
-```
-ng test
-```
+I writted the unit tests but karma is just broke on my machine I could not resolve at time.
 
-**End to End testing**
+**End to End testing with Cypress**
 
 ```
 npm run test:e2e
 ```
+
+Any problems contact me at vitorpiovezam@yandex.com
