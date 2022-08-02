@@ -17,4 +17,11 @@ export class PokemonService extends BaseService<Pokemon> {
 
 		return this.http.get<PokemonApiResponse>(`${this.apiUrl}/cards`, {params});
 	}
+
+	getById(id: string) {
+		let params = new HttpParams();
+		params = params.append('q', `id:${id}`)
+
+		return this.http.get<PokemonApiResponse>(`${this.apiUrl}/cards`, {params});
+	}
 }

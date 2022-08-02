@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { PokedexViewDialogComponent } from './view-dialog.component';
+import { PokedexViewComponent } from './view.component';
 
-describe('PokedexViewDialogComponent', () => {
-    let component: PokedexViewDialogComponent;
-    let fixture: ComponentFixture<PokedexViewDialogComponent>;
+describe('PokedexViewComponent', () => {
+    let component: PokedexViewComponent;
+    let fixture: ComponentFixture<PokedexViewComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PokedexViewDialogComponent]
+            declarations: [PokedexViewComponent]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(PokedexViewDialogComponent);
+        fixture = TestBed.createComponent(PokedexViewComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

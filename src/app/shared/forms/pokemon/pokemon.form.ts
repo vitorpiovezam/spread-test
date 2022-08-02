@@ -20,6 +20,11 @@ import { Pokemon } from "../../definitions/pokemon.model";
 				<mat-label>Types</mat-label>
 				<input matInput placeholder="Types" formControlName="types" required>
 			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Description</mat-label>
+				<textarea matInput formControlName="flavorText" rows="4"></textarea>
+			</mat-form-field>
 		</form>
   	`,
 	styles: [`

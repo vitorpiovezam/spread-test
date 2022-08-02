@@ -19,19 +19,4 @@ export abstract class BaseService<T extends BaseModel> {
 		return this.http.get<T[]>(`${this.apiUrl}`);
 	}
 
-	getById(t: T): Observable<T> {
-		return this.http.get<T>(`${this.apiUrl}/${t.id}`);
-	}
-
-	create(t: T): Observable<T> {
-		return this.http.post<T>(`${this.apiUrl}`, { body: t });
-	}
-
-	edit(t: T): Observable<T> {
-		return this.http.put<T>(`${this.apiUrl}`, { body: t });
-	}
-
-	delete(t: T): Observable<T> {
-		return this.http.delete<T>(`${this.apiUrl}/${t.id}`);
-	}
 }

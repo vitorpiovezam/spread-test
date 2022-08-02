@@ -15,25 +15,70 @@ import { PokemonService } from "src/app/shared/services/pokemon.service";
     </header>
 
     <main>
+			<ng-container *ngIf="pokemon; else loadingTemplate">
+				<form [formGroup]="form">
+					<app-pokemon-form formControlName="pokemon"></app-pokemon-form>
+				</form>
+			</ng-container>
     </main>
 
     <footer>
       
     </footer>
+
+
+		<ng-template #loadingTemplate>
+			<mat-spinner diameter="50"></mat-spinner>
+		</ng-template>
   `,
 	styleUrls: ['./view.component.sass']
 })
 export class PokedexViewComponent implements OnInit {
+	pokemonId: string;
 	pokemon!: Pokemon;
+
+	form: FormGroup;
 
 	constructor(
 		private pokemonService: PokemonService,
     private activatedRoute: ActivatedRoute
 	) {
-
+		this.pokemonId = this.activatedRoute.snapshot.params['id'];
+		
 	}
 
 	ngOnInit(): void {
-		
+		if (this.pokemonId) this.getPokemon(this.pokemonId);
+	}
+
+	getPokemon(id: string) {
+		this.pokemonService.getById(id).subscribe(res => {
+			this.pokemon = res.data[0];
+			this.form = new FormGroup({
+				pokemon: new FormControl(	this.pokemon )
+			})
+			
+			this.initForm();
+		});
+	}
+
+	initForm() {
+		if (!this.pokemon.level) this.pokemon.level = null;
+    if (!this.pokemon.resistances) this.pokemon.resistances = null;
+    if (!this.pokemon.retreatCost) this.pokemon.retreatCost = null;
+    if (!this.pokemon.evolvesTo) this.pokemon.evolvesTo = [''];
+    if (!this.pokemon.evolvesFrom) this.pokemon.evolvesFrom = null;
+    if (!this.pokemon.weaknesses) this.pokemon.weaknesses = null;
+    if (!this.pokemon.convertedRetreatCost) this.pokemon.convertedRetreatCost = null;
+    if (!this.pokemon.abilities) this.pokemon.abilities = null;
+    if (!this.pokemon.flavorText) this.pokemon.flavorText = null;
+    if (!this.pokemon.rules) this.pokemon.rules = null;
+    if (!this.pokemon.rarity) this.pokemon.rarity = null;
+  
+    this.form = new FormGroup({
+      pokemon: new FormControl(this.pokemon)
+    });
+
+		this.form.disable();
 	}
 }

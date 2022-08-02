@@ -24,6 +24,11 @@ import { PokedexViewDialogComponent } from '../view-dialog/view-dialog.component
       [infiniteScrollUpDistance]="10"
       [infiniteScrollThrottle]="20"
       (scrolled)="onScroll()">
+
+      <ng-container *ngIf="pokemons.length === 0">
+        No pokemons found
+      </ng-container>
+
       <app-pokemon-card
         *ngFor="let pokemon of pokemons"
         [pokemon]="pokemon"
@@ -35,7 +40,7 @@ import { PokedexViewDialogComponent } from '../view-dialog/view-dialog.component
 })
 export class PokedexListComponent implements OnInit, OnDestroy {
   private readonly subscriptions$ = new Subject();
-  public pokemons = [] as Pokemon[];
+  public pokemons = [{}] as Pokemon[];
   public filteredList = [] as Pokemon[];
 
   loading = false;
